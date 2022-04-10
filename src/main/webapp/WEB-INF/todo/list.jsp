@@ -4,6 +4,8 @@
 <%@ include file="/WEB-INF/includes/header.jsp"%>
 
 <ul>
+    <h2>${loginInfo}</h2>
+    <h3>${loginInfo.mname}</h3>
     <c:forEach items="${dtoList}" var="dto">
         <li>
             <span><a href="/todo/read?tno=${dto.tno}">${dto.tno}</a></span>
@@ -13,5 +15,9 @@
         </li>
     </c:forEach>
 </ul>
+
+<form action="/logout" method="post">
+    <button>LOGOUT</button>
+</form>
 
 <%@ include file="/WEB-INF/includes/footer.jsp"%>
