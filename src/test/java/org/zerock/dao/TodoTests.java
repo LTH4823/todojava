@@ -43,11 +43,16 @@ public class TodoTests {
     }
 
     @Test
+    public void testDeleteOne() throws Exception{
+        todoDAO.deleteOne(2L);
+    }
+
+    @Test
     public void testUpdateOne() throws Exception {
         TodoVO todoVO = TodoVO.builder()
                 .tno(1L)
                 .title("Sample Title...")
-                .dueDate(LocalDate.of(2021,12,31))
+                .dueDate(LocalDate.of(2022,5,5))
                 .finished(true)
                 .build();
 
