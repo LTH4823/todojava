@@ -1,16 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peter
-  Date: 2022-04-10
-  Time: 오후 1:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    </body>
 </html>
