@@ -12,6 +12,13 @@ import java.util.List;
 
 public class TodoDAO {
 
+    private final String SELECT_ALL ="select * from tbl_todo";
+    private final String SELECT_ONE ="select * from tbl_todo where tno =?";
+    private final String INSERT = "insert into tbl_todo (title, dueDate, finished) values (?, ?, ?)";
+    private final String UPDATE = "update tbl_todo set title =?, dueDate = ?, finished = ? where tno =?";
+    private final String DELETE = "delete from tbl_todo where tno = ?";
+
+
     public String getTime()throws Exception {
 
         String now = null;
@@ -27,7 +34,7 @@ public class TodoDAO {
     }
 
     public void insert(TodoVO vo) throws Exception {
-        String sql = "insert into tbl_todo (title, dueDate, finished) values (?, ?, ?)";
+        String sql = INSERT;
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, vo.getTitle());
@@ -37,7 +44,7 @@ public class TodoDAO {
     }
 
     public List<TodoVO> selectAll()throws Exception {
-        String sql = "select * from tbl_todo";
+        String sql = SELECT_ALL;
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
@@ -56,7 +63,7 @@ public class TodoDAO {
     }
 
     public TodoVO selectOne(Long tno)throws Exception {
-        String sql = "select * from tbl_todo where tno = ?";
+        String sql = SELECT_ONE;
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, tno);
@@ -73,7 +80,7 @@ public class TodoDAO {
 
 
     public void deleteOne(Long tno) throws Exception {
-        String sql = "delete from tbl_todo where tno = ?";
+        String sql = DELETE;
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -82,7 +89,7 @@ public class TodoDAO {
     }
 
     public void updateOne(TodoVO todoVO)throws Exception{
-        String sql = "update tbl_todo set title =?, dueDate = ?, finished = ? where tno =?";
+        String sql = UPDATE;
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, todoVO.getTitle());
